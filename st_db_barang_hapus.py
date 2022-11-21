@@ -25,7 +25,7 @@ def hapus():
                 st.header('KODE SALAH')
 
            else:
-               sql = "DELETE FROM barang WHERE kode_barang = '%s'"
+               sql = "DELETE FROM barang WHERE kode_barang = '%s'" % kode
                mycursor = conn.cursor()
                mycursor.execute(sql, kode)
                conn.commit()
