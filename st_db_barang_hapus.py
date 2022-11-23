@@ -19,15 +19,14 @@ def hapus():
            mycursor = conn.cursor()
            mycursor.execute(sql)    
            dataku = mycursor.fetchall()
-           
-           ada = (len(dataku))
-           if (ada == 0):
+
+           if (len(dataku) == 0):
                 st.header('KODE SALAH')
 
            else:
                sql = "DELETE FROM barang WHERE kode_barang = '%s'" % kode
                mycursor = conn.cursor()
-               mycursor.execute(sql, kode)
+               mycursor.execute(sql)
                conn.commit()
                conn.close()
                st.header ('Data telah di hapus')

@@ -13,27 +13,28 @@ def edit():
     stok = st.number_input  ('STOK BARANG')
 
     #Tombol
-    cek=st.button ('UPDATE DATA')
+    cek = st.button ('UPDATE DATA')
+
     if (cek):
         #Cek kode belum di input
         if (kode == ''):
             st.error ('KODE BARANG BELUM DI INPUT')
         else:
             #Cek apakah kode double, jika double beri PESAN
-            sql = "select * from barang where kode_barang = '%s'" % kode
+            sql = "SELECT * FROM barang WHERE kode_barang = '%s'" % kode
             mycursor = conn.cursor()    #SIAPKAN SQL
             mycursor.execute(sql)       #jalankan sql
             dataku = mycursor.fetchall() #ambil datanya
 
             #cek data, jika NOL = kode salah
             ada = (len(dataku))
-            if (ada > 0):
+            if (ada == 0):
                 st.error ('KODE SUDAH ADA, SAVE DI BATALKAN')
 
             else:
                 #SQL UPDATE, pake PARAMETER = %s (harus huruf %s)
                 dt = (nama,stok,satuan,kode)
-                sql = "update barang set \
+                sql = "UPDATE barang SET \
                     nama_barang = %s \
                     ,stok = %s \
                     ,satuan = %s \
